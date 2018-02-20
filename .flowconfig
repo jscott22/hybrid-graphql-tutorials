@@ -1,0 +1,10 @@
+[include]
+[ignore]
+.*/build/.*
+.*/node_modules/graphql-tools/.*
+[libs]
+[lints]
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+module.name_mapper.extension='graphql' -> '<PROJECT_ROOT>/utils/graphqlShim'
+[version]

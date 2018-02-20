@@ -1,16 +1,30 @@
-import axios from "axios";
+// @flow
+import axios from 'axios';
 
-const company = async (parentValue, { id }) => {
+export type CompanyType = {
+  id: string,
+  name: string,
+  description: string
+};
+
+type CompanyQueryType = {
+  id: string
+};
+
+const company = async (
+  parentValue: any,
+  { id }: CompanyQueryType,
+): Promise<{ data: CompanyType }> => {
   try {
     const { data } = await axios.get(`http://localhost:3000/companies/${id}`);
     return data;
   } catch (e) {
-    console.warn("Something went wrong");
+    return e;
   }
 };
 
 export default {
   Query: {
-    company
-  }
+    company,
+  },
 };
