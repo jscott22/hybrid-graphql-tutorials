@@ -1,0 +1,8 @@
+type Query {
+  user(id: String): User!
+  company(id: String): Company!
+}
+
+schema {
+  query: Query
+}

@@ -1,26 +1,31 @@
-import * as _ from "lodash";
+import axios from "axios";
 
-const users = [
-  {
-    id: "23",
-    firstName: "Bill",
-    age: 20
-  },
-  {
-    id: "47",
-    firstName: "Samantha",
-    age: 21
+const user = async (parentValue, { id }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3000/users/${id}`);
+    return data;
+  } catch (e) {
+    console.warn("Something went wrong");
   }
-];
-
-const user = (parentValue, args) => {
-  return _.find(users, {
-    id: args.id
-  });
 };
 
-export const userResolvers = {
+const company = async ({ companyId }, args) => {
+  console.log("COMPANY ID", companyId);
+  try {
+    const { data } = await axios.get(
+      `http://localhost:3000/companies/${companyId}`
+    );
+    return data;
+  } catch (e) {
+    console.warn("Something went wrong");
+  }
+};
+
+export default {
   Query: {
     user
+  },
+  User: {
+    company
   }
 };

@@ -1,6 +1,7 @@
 import express from "express";
 import expressGraphQl from "express-graphql";
-import { schema } from "./api/graphQl";
+import { express as middleware } from "graphql-voyager/middleware";
+import { schema } from "./api/schema";
 
 const app = express();
 
@@ -11,5 +12,7 @@ app.use(
     graphiql: true
   })
 );
+
+app.use("/voyager", middleware({ endpointUrl: "/graphql" }));
 
 export default app;
