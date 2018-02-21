@@ -4,3 +4,7 @@ type Company {
   description: String!
   users: [User]
 }
+
+extend type Query {
+  company(id: String): Company!
+}

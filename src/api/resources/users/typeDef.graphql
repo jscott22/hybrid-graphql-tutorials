@@ -4,3 +4,13 @@ type User {
   age: Int!
   company: Company
 }
+
+type Query {
+  user(id: String): User!
+}
+
+type Mutation {
+  addUser(firstName: String, age: Int, companyId: String): User
+  deleteUser(userId: String): User
+  updateUser(id: ID!, firstName: String, age: Int, companyId: String): User
+}

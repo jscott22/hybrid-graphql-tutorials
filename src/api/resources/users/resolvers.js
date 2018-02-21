@@ -53,12 +53,34 @@ const addUser = async (
   }
 };
 
+const updateUser = async (parentValue: any, updatedUser: UserType): Promise<UserType> => {
+  try {
+    const { data } = await axios.patch(
+      `http://localhost:3000/users/${updatedUser.id}`,
+      updatedUser,
+    );
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+const deleteUser = async (parentValue: any, { userId }: { userId: string }): Promise<null> => {
+  try {
+    return await axios.delete(`http://localhost:3000/users/${userId}`);
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
 export default {
   Query: {
     user,
   },
   Mutation: {
     addUser,
+    deleteUser,
+    updateUser,
   },
   User: {
     company,
