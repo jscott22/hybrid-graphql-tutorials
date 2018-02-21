@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const StartServerPlugin = require('start-server-webpack-plugin');
-const FlowtypePlugin = require('flowtype-loader/plugin');
 
 module.exports = {
   entry: ['webpack/hot/poll?1000', './src/index'],
@@ -18,8 +17,7 @@ module.exports = {
     rules: [
       {
         test: /\.js?$/,
-        loader: 'flowtype-loader',
-        enforce: 'pre',
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {
@@ -32,7 +30,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new FlowtypePlugin(),
     new StartServerPlugin('server.js'),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),

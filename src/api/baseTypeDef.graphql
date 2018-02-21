@@ -1,8 +1,13 @@
 type Query {
-  user(id: String): User!
   company(id: String): Company!
+  user(id: String): User!
+}
+
+type Mutation {
+  addUser(firstName: String, age: Int, companyId: String): User
 }
 
 schema {
   query: Query
+  mutation: Mutation
 }
